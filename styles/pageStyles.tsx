@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const MainContainer = styled.div`
+  display: relative;
   overflow-x: auto !important;
   padding: 15px 15px;
   color: #00008b;
@@ -24,6 +25,19 @@ const Comment = styled.p`
   background-color: #fff;
 `;
 
+const BottomComment = styled.div`
+  width: 100vw;
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-family: sans-serif;
+  background-color: #fff;
+`;
+
 const Input = styled.input`
   margin: 5px 0;
   padding: 10px 15px;
@@ -44,6 +58,23 @@ const Button = styled.button`
   padding: 8px 16px;
   width: 100%;
   font-size: 26px;
+  color: #fff;
+  border-radius: 6px;
+  border: 0;
+  background-color: #00008b;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #4b4bff;
+  }
+`;
+
+const NavButton = styled.button`
+  margin-top: 15px;
+  padding: 16px 16px;
+  width: 100%;
+  font-size: 18px;
   color: #fff;
   border-radius: 6px;
   border: 0;
@@ -88,14 +119,16 @@ const Text = styled.p`
 `;
 
 export {
-  Table,
-  TBody,
-  Tr,
-  Td,
-  MainContainer,
-  Container,
-  Comment,
-  Input,
-  Text,
+  BottomComment,
   Button,
+  Comment,
+  Container,
+  Input,
+  MainContainer,
+  NavButton,
+  TBody,
+  Table,
+  Td,
+  Text,
+  Tr,
 };

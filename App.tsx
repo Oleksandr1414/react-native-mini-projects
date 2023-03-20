@@ -1,43 +1,37 @@
-import Task1 from "./pages/task1";
-import Task2 from "./pages/task2";
-import Task3 from "./pages/task3";
+import RouteLab1 from "./routes/lab1";
+import RouteLab2 from "./routes/lab2";
+import { MainContainer, BottomComment, NavButton } from "./styles/pageStyles";
 import { NavigationContainer } from "@react-navigation/native";
-import { StatusBar, Text, View } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Header from "./components/Header";
+import { StatusBar, Button } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+const HomeScreen = ({ navigation }: { navigation: any }) => {
+  return (
+    <>
+      <MainContainer>
+        <NavButton onClick={() => navigation.navigate("ЛАБОРАТОРНА РОБОТА №1")}>
+          ЛАБОРАТОРНА РОБОТА №1
+        </NavButton>
+        <NavButton onClick={() => navigation.navigate("ЛАБОРАТОРНА РОБОТА №2")}>
+          ЛАБОРАТОРНА РОБОТА №2
+        </NavButton>
+      </MainContainer>
+      <BottomComment>ВИКОНАВ: ЧАБАНЮК ОЛЕКСАНДР КН-32</BottomComment>
+    </>
+  );
+};
 
 export default function App() {
   return (
     <NavigationContainer>
       <StatusBar barStyle={"default"} />
-      <Tab.Navigator screenOptions={{ headerStyle: { height: "max-content" } }}>
-        <Tab.Screen
-          name="Task1"
-          component={Task1}
-          options={{
-            title: "Завдання №1",
-            headerTitle: () => <Header n={1} />,
-          }}
-        />
-        <Tab.Screen
-          name="Task2"
-          component={Task2}
-          options={{
-            title: "Завдання №2",
-            headerTitle: () => <Header n={2} />,
-          }}
-        />
-        <Tab.Screen
-          name="Task3"
-          component={Task3}
-          options={{
-            title: "Завдання №3",
-            headerTitle: () => <Header n={3} />,
-          }}
-        />
-      </Tab.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen name="ГОЛОВНА" component={HomeScreen} />
+        <Stack.Screen name="ЛАБОРАТОРНА РОБОТА №1" component={RouteLab1} />
+        <Stack.Screen name="ЛАБОРАТОРНА РОБОТА №2" component={RouteLab2} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

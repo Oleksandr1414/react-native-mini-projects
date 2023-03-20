@@ -1,4 +1,4 @@
-import validateValue from "../utils/validateValue";
+import validateValue from "../../utils/validateValue";
 import { useState, useMemo } from "react";
 import {
   Button,
@@ -6,26 +6,32 @@ import {
   Container,
   Input,
   MainContainer,
-} from "../styles/pageStyles";
+} from "../../styles/pageStyles";
 
-export default function Task1() {
+export default function Task2() {
   const [a, setA] = useState<number>();
   const [b, setB] = useState<number>();
-  const [c, setC] = useState<number>();
   const [res, setResult] = useState<number>();
   const [err, setErr] = useState<string>("");
 
   function calc() {
     setErr("");
 
-    if (a === undefined || b === undefined || c === undefined) {
+    if (a === undefined || b === undefined || a > b) {
       setErr("Заповніть коректно усі поля.");
       return;
     }
 
-    setResult(
-      !(a % 2) && !(b % 2) && !(c % 2) ? a * b * c : Math.pow(a + b + c, 2)
-    );
+    let result: number | undefined;
+    for (let i = Math.round(a); i <= b; i++) {
+      if (i % 8) {
+        continue;
+      }
+
+      result = result ? result * i : i;
+    }
+
+    setResult(result || 0);
   }
 
   const resultView = useMemo(() => {
@@ -35,36 +41,34 @@ export default function Task1() {
       );
     }
 
-    if (res === undefined) {
+    if (typeof res === "undefined") {
       return null;
     }
 
-    return <Container style={{ marginTop: "15px" }}>Результа: {res}</Container>;
+    return (
+      <Container style={{ marginTop: "15px" }}>
+        {res || res === 0 ? `Результа: ${res}` : `Числа не знайдено`}
+      </Container>
+    );
   }, [res, err]);
 
   return (
     <MainContainer>
       <Comment>
-        Задано три числа. Якщо всі вони парні, то знайти їх добуток. В іншому
-        випадку – квадрат суми.
+        Підрахуйте добуток цілих чисел на заданому проміжку чисел &#91;a,b&#93;,
+        парних і кратних 8.
       </Comment>
       <Container>
         <Input
-          placeholder="Перше число.."
+          placeholder="a.."
           type="text"
           onChange={(e) => setA(validateValue(e.target.value))}
           required
         />
         <Input
-          placeholder="Друге число.."
+          placeholder="b.."
           type="text"
           onChange={(e) => setB(validateValue(e.target.value))}
-          required
-        />
-        <Input
-          placeholder="Третє число.."
-          type="text"
-          onChange={(e) => setC(validateValue(e.target.value))}
           required
         />
         <Button onClick={calc}>Порахувати</Button>

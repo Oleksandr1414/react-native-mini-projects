@@ -1,5 +1,5 @@
-import validateValue from "../utils/validateValue";
-import getUniqueKey from "../utils/getUniqueKey";
+import validateValue from "../../utils/validateValue";
+import getUniqueKey from "../../utils/getUniqueKey";
 import { useState, useMemo } from "react";
 import {
   Comment,
@@ -11,7 +11,7 @@ import {
   Td,
   Text,
   Tr,
-} from "../styles/pageStyles";
+} from "../../styles/pageStyles";
 
 export default function Task2() {
   const [n, setN] = useState<number>();
