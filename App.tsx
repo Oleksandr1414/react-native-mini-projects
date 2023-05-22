@@ -4,6 +4,7 @@ import RouteLab3 from "./routes/lab3";
 import RouteLab4 from "./routes/lab4";
 import RouteLab6 from "./routes/lab6";
 import RouteLab7 from "./routes/lab7";
+import RouteLab8 from "./routes/lab8";
 import { MainContainer, BottomComment, NavButton } from "./styles/pageStyles";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "react-native";
@@ -33,6 +34,9 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
         <NavButton onClick={() => navigation.navigate("ЛАБОРАТОРНА РОБОТА №7")}>
           ЛАБОРАТОРНА РОБОТА №7
         </NavButton>
+        <NavButton onClick={() => navigation.navigate("ЛАБОРАТОРНА РОБОТА №8")}>
+          ЛАБОРАТОРНА РОБОТА №8
+        </NavButton>
       </MainContainer>
       <BottomComment>ВИКОНАВ: ЧАБАНЮК ОЛЕКСАНДР КН-32</BottomComment>
     </>
@@ -51,6 +55,7 @@ export default function App() {
         <Stack.Screen name="ЛАБОРАТОРНА РОБОТА №4" component={RouteLab4} />
         <Stack.Screen name="ЛАБОРАТОРНА РОБОТА №6" component={RouteLab6} />
         <Stack.Screen name="ЛАБОРАТОРНА РОБОТА №7" component={RouteLab7} />
+        <Stack.Screen name="ЛАБОРАТОРНА РОБОТА №8" component={RouteLab8} />
       </Stack.Navigator>
     </NavigationContainer>
   );
