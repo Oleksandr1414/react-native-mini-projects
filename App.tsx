@@ -1,4 +1,5 @@
 import RouteLab1 from "./routes/lab1";
+import RouteLab10 from "./routes/lab10";
 import RouteLab2 from "./routes/lab2";
 import RouteLab3 from "./routes/lab3";
 import RouteLab4 from "./routes/lab4";
@@ -37,6 +38,11 @@ const HomeScreen = ({ navigation }: { navigation: any }) => {
         <NavButton onClick={() => navigation.navigate("ЛАБОРАТОРНА РОБОТА №8")}>
           ЛАБОРАТОРНА РОБОТА №8
         </NavButton>
+        <NavButton
+          onClick={() => navigation.navigate("ЛАБОРАТОРНА РОБОТА №10")}
+        >
+          ЛАБОРАТОРНА РОБОТА №10
+        </NavButton>
       </MainContainer>
       <BottomComment>ВИКОНАВ: ЧАБАНЮК ОЛЕКСАНДР КН-32</BottomComment>
     </>
@@ -56,6 +62,7 @@ export default function App() {
         <Stack.Screen name="ЛАБОРАТОРНА РОБОТА №6" component={RouteLab6} />
         <Stack.Screen name="ЛАБОРАТОРНА РОБОТА №7" component={RouteLab7} />
         <Stack.Screen name="ЛАБОРАТОРНА РОБОТА №8" component={RouteLab8} />
+        <Stack.Screen name="ЛАБОРАТОРНА РОБОТА №10" component={RouteLab10} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -103,6 +103,13 @@ export default function Task() {
     setSelectedProduct(product);
   };
 
+  const handleUpdateProduct = (product: Product) => {
+    setProducts((prevProducts) => [
+      product,
+      ...prevProducts.filter((el) => el.name !== product.name),
+    ]);
+  };
+
   const handleCloseDetails = () => {
     setSelectedProduct(null);
   };
@@ -213,7 +220,7 @@ export default function Task() {
                   type="button"
                   onClick={() => handleViewDetails(product)}
                 >
-                  Детально
+                  Редагувати
                 </button>
                 <button
                   type="button"
@@ -228,6 +235,7 @@ export default function Task() {
           {selectedProduct && (
             <ProductModal
               product={selectedProduct}
+              onUpdate={handleUpdateProduct}
               onClose={handleCloseDetails}
             />
           )}

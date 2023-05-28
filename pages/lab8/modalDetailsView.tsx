@@ -1,37 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import Product from "./interface/Product";
 import { Button } from "../../styles/pageStyles";
 
 interface ProductModalProps {
   product: Product;
   onClose: () => void;
+  onUpdate: (product: any) => void;
 }
 
-const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
+const ProductModal: React.FC<ProductModalProps> = ({
+  product,
+  onClose,
+  onUpdate,
+}) => {
+  const [newData, setNewData] = useState(product);
+
+  const handleInputChange = (fieldName: string, value: any) => {
+    setNewData((prevData) => ({
+      ...prevData,
+      [fieldName]: fieldName !== "manufacturers" ? value : [value],
+    }));
+  };
+
+  const handleUpdate = () => {
+    onUpdate(newData);
+  };
+
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h3>Детальна інформація про продукт</h3>
-        <p>Назва: {product.name}</p>
-        <p>Одиниця виміру: {product.unit}</p>
-        <p>Кількість на складі: {product.quantity}</p>
-        <p>Ціна за одиницю: {product.price}</p>
-
-        {product.manufacturers.length > 0 && (
-          <div>
-            <h4>Виробники:</h4>
-            <ul>
-              {product.manufacturers.map((manufacturer, index) => (
-                <li key={index}>{manufacturer}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <Button type="button" onClick={onClose}>
-          Закрити
-        </Button>
-      </div>
+    <div>
+      {Object.keys(product).map((fieldName) => (
+        <div key={fieldName}>
+          <label>{fieldName}</label>
+          <input
+            type="text"
+            value={newData[fieldName]}
+            onChange={(e) => handleInputChange(fieldName, e.target.value)}
+          />
+        </div>
+      ))}
+      <button onClick={handleUpdate}>Оновити</button>
+      <button onClick={onClose}>Закрити</button>
     </div>
   );
 };
